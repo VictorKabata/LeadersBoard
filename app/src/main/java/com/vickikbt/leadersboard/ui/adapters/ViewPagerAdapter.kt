@@ -3,7 +3,7 @@ package com.vickikbt.leadersboard.ui.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.vickikbt.leadersboard.ui.fragments.LearningLeadersFragment
+import com.vickikbt.leadersboard.ui.fragments.HoursLeadersFragment
 import com.vickikbt.leadersboard.ui.fragments.SkillLeadersFragment
 
 class ViewPagerAdapter(fragmentManager: FragmentManager) :
@@ -14,7 +14,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) :
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> LearningLeadersFragment()
+            0 -> HoursLeadersFragment()
             else -> SkillLeadersFragment()
         }
     }

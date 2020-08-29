@@ -46,7 +46,7 @@ object NetworkModule {
     @Provides
     fun providesRetrofit(
         baseUrl: String,
-        converterFactory: GsonConverterFactory,
+        converterFactory: Converter.Factory,
         okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
