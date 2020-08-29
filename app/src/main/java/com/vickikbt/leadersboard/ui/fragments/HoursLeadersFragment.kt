@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.vickikbt.leadersboard.R
-import com.vickikbt.leadersboard.ui.viewmodels.AppViewModel
+import com.vickikbt.leadersboard.ui.viewmodels.HoursLeadersViewModel
 import com.vickikbt.leadersboard.util.StateListener
 import com.vickikbt.leadersboard.util.hide
 import com.vickikbt.leadersboard.util.show
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_hours_leaders.*
 @AndroidEntryPoint
 class HoursLeadersFragment : Fragment(), StateListener {
 
-    private val viewModel by viewModels<AppViewModel>()
+    private val viewModel by viewModels<HoursLeadersViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +27,8 @@ class HoursLeadersFragment : Fragment(), StateListener {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_hours_leaders, container, false)
 
-        viewModel.fetchSkillLeaders().observe(viewLifecycleOwner, Observer {
+        viewModel.getHoursLeader().observe(viewLifecycleOwner, Observer {
             network_tester_textView.text = it.toString()
-            Log.e("VickiKbt", it.toString())
         })
         return root
     }
