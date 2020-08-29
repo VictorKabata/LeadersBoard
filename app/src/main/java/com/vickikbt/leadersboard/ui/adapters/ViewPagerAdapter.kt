@@ -1,38 +1,32 @@
 package com.vickikbt.leadersboard.ui.adapters
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.vickikbt.leadersboard.R
 import com.vickikbt.leadersboard.ui.fragments.LearningLeadersFragment
+import com.vickikbt.leadersboard.ui.fragments.SkillLeadersFragment
 
-private val TAB_TITLES = arrayOf(
-        R.string.tab_text_1,
-        R.string.tab_text_2
-)
-
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
-    : FragmentPagerAdapter(fm) {
+class ViewPagerAdapter(fragmentManager: FragmentManager) :
+    FragmentPagerAdapter(
+        fragmentManager,
+        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+    ) {
 
     override fun getItem(position: Int): Fragment {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return LearningLeadersFragment.newInstance(
-            position + 1
-        )
+        return when (position) {
+            0 -> LearningLeadersFragment()
+            else -> SkillLeadersFragment()
+        }
     }
+
+    override fun getCount() = 2
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return context.resources.getString(TAB_TITLES[position])
+        return when (position) {
+            0 -> "Learning Leaders"
+            else -> "Skill IQ Leaders"
+        }
     }
 
-    override fun getCount(): Int {
-        // Show 2 total pages.
-        return 2
-    }
+
 }
