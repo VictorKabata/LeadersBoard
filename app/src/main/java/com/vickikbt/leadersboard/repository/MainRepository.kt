@@ -12,17 +12,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class LeadersRepository @Inject constructor(
+class MainRepository @Inject constructor(
     private val apiService: ApiService,
     private val appDatabase: AppDatabase
 ) : SafeApiRequest() {
 
     private val hoursLeaders = MutableLiveData<List<HoursLeaderModel>>()
-    private val skillLeaders = MutableLiveData<List<SkillLeadersModel>()
+    private val skillLeaders = MutableLiveData<List<SkillLeadersModel>>()
 
     init {
         hoursLeaders.observeForever {
             saveHoursLeaders(it)
+        }
+
+        skillLeaders.observeForever {
+            saveSkillLeaders(it)
         }
     }
 
@@ -41,10 +45,23 @@ class LeadersRepository @Inject constructor(
         }
     }
 
+    private suspend fun fetchSkillLeaders() {
+        if (isFetchNeeded()) {
+            val fetchedSkillLeaders = safeApiRequest { apiService.fetchSkillLeaders() }
+            skillLeaders.postValue(fetchedSkillLeaders)
+        }
+    }
+
     //Save the fetched data from the API to SQLite DB.
     private fun saveHoursLeaders(hoursLeaders: List<HoursLeaderModel>) {
         Coroutines.io {
             appDatabase.hoursLeaderDao().saveHoursLeaders(hoursLeaders)
+        }
+    }
+
+    private fun saveSkillLeaders(skillLeaders: List<SkillLeadersModel>) {
+        Coroutines.io {
+            appDatabase.skillLeaderDao().saveSkillLeaders(skillLeaders)
         }
     }
 
@@ -54,6 +71,13 @@ class LeadersRepository @Inject constructor(
         return withContext(Dispatchers.IO) {
             fetchHoursLeaders()
             appDatabase.hoursLeaderDao().getHoursLeaders()
+        }
+    }
+
+    suspend fun getSkillLeader(): LiveData<List<SkillLeadersModel>> {
+        return withContext(Dispatchers.IO) {
+            fetchSkillLeaders()
+            appDatabase.skillLeaderDao().getSkillLeaders()
         }
     }
 

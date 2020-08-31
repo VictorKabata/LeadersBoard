@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import com.vickikbt.leadersboard.R
 import com.vickikbt.leadersboard.model.HoursLeaderModel
 import com.vickikbt.leadersboard.ui.adapters.HoursLeadersRecyclerViewAdapter
-import com.vickikbt.leadersboard.ui.viewmodels.HoursLeadersViewModel
+import com.vickikbt.leadersboard.ui.viewmodels.MainViewModel
 import com.vickikbt.leadersboard.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_hours_leaders.*
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_hours_leaders.*
 @AndroidEntryPoint
 class HoursLeadersFragment : Fragment(), StateListener {
 
-    private val viewModel by viewModels<HoursLeadersViewModel>()
+    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

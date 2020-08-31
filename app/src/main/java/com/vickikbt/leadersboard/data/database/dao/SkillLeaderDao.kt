@@ -11,7 +11,7 @@ import com.vickikbt.leadersboard.model.SkillLeadersModel
 interface SkillLeaderDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveSkillLeaders(skillLeaders: SkillLeadersModel)
+    suspend fun saveSkillLeaders(skillLeaders: List<SkillLeadersModel>)
 
     @Query("SELECT * FROM skill_leaders_table")
     fun getSkillLeaders(): LiveData<List<SkillLeadersModel>>

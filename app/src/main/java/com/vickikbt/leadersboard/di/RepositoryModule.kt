@@ -2,7 +2,7 @@ package com.vickikbt.leadersboard.di
 
 import com.vickikbt.leadersboard.data.database.AppDatabase
 import com.vickikbt.leadersboard.data.network.ApiService
-import com.vickikbt.leadersboard.repository.LeadersRepository
+import com.vickikbt.leadersboard.repository.MainRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +17,7 @@ object RepositoryModule {
     fun providesAppRepository(
         apiService: ApiService,
         appDatabase: AppDatabase
-    ): LeadersRepository {
-        return LeadersRepository(apiService, appDatabase)
+    ): MainRepository {
+        return MainRepository(apiService, appDatabase)
     }
 }
