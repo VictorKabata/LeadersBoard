@@ -37,6 +37,7 @@ class MainRepository @Inject constructor(
         return false
     }
 
+    //TODO: Catch no internet exception
     //Fetch data from the API if fetch is needed is true
     private suspend fun fetchHoursLeaders() {
         if (isFetchNeeded()) {

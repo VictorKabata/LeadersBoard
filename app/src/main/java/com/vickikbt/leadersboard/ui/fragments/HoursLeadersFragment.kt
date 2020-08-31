@@ -13,7 +13,6 @@ import com.vickikbt.leadersboard.ui.adapters.HoursLeadersRecyclerViewAdapter
 import com.vickikbt.leadersboard.ui.viewmodels.MainViewModel
 import com.vickikbt.leadersboard.util.Coroutines
 import com.vickikbt.leadersboard.util.hide
-import com.vickikbt.leadersboard.util.log
 import com.vickikbt.leadersboard.util.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_hours_leaders.*
@@ -46,9 +45,8 @@ class HoursLeadersFragment : Fragment() {
                     hours_recyclerview.adapter = adapter
                     hours_progressBar?.hide()
                 }
-                requireActivity().applicationContext.log(hoursLeadersList.size.toString())
             })
         }
     }
-
 }
+
