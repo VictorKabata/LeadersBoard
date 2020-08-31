@@ -9,4 +9,5 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="logo">logo</string>
 </resources>
