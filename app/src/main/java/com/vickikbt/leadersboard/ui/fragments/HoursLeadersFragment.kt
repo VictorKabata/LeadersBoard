@@ -28,13 +28,14 @@ class HoursLeadersFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_hours_leaders, container, false)
 
-        hours_progressBar?.show()
         initRecyclerView()
 
         return root
     }
 
     private fun initRecyclerView() {
+        hours_progressBar?.show()
+
         val hoursLeadersList = arrayListOf<HoursLeaderModel>()
         val adapter = HoursLeadersRecyclerViewAdapter(requireActivity(), hoursLeadersList)
 

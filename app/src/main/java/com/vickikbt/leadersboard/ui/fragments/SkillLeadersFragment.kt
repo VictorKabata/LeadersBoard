@@ -29,13 +29,14 @@ class SkillLeadersFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_skill_leaders, container, false)
 
-        skills_progressBar?.show()
         initRecyclerView()
 
         return root
     }
 
     private fun initRecyclerView() {
+        skills_progressBar?.show()
+        
         val skillLeadersList = arrayListOf<SkillLeadersModel>()
         val adapter = SkillLeadersRecyclerViewAdapter(requireActivity(), skillLeadersList)
 
