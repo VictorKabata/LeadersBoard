@@ -12,5 +12,5 @@ data class SkillLeadersModel(
     val score: Int,
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int=0
+    val id: Int = 0
 )

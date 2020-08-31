@@ -11,10 +11,10 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        //Wait 1.5 seconds the move to the MainActivity.
+        //Wait 2 seconds the move to the MainActivity.
         Handler().postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }, 1500)
+        }, 2000)
     }
 }
