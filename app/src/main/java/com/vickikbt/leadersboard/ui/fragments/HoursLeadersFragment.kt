@@ -12,6 +12,8 @@ import com.vickikbt.leadersboard.model.HoursLeaderModel
 import com.vickikbt.leadersboard.ui.adapters.HoursLeadersRecyclerViewAdapter
 import com.vickikbt.leadersboard.ui.viewmodels.MainViewModel
 import com.vickikbt.leadersboard.util.Coroutines
+import com.vickikbt.leadersboard.util.hide
+import com.vickikbt.leadersboard.util.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_hours_leaders.*
 
@@ -35,11 +37,14 @@ class HoursLeadersFragment : Fragment() {
         val hoursLeadersList = arrayListOf<HoursLeaderModel>()
         val adapter = HoursLeadersRecyclerViewAdapter(requireActivity(), hoursLeadersList)
 
+        hours_progressBar?.show()
+
         Coroutines.main {
             viewModel.hoursLeaders.await().observe(viewLifecycleOwner, Observer {
                 for (i in it.indices) {
                     hoursLeadersList.add(it[i])
                     hours_recyclerview.adapter = adapter
+                    hours_progressBar?.hide()
                 }
             })
         }
