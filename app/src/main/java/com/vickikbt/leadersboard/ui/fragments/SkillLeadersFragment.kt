@@ -12,6 +12,8 @@ import com.vickikbt.leadersboard.model.SkillLeadersModel
 import com.vickikbt.leadersboard.ui.adapters.SkillLeadersRecyclerViewAdapter
 import com.vickikbt.leadersboard.ui.viewmodels.MainViewModel
 import com.vickikbt.leadersboard.util.Coroutines
+import com.vickikbt.leadersboard.util.hide
+import com.vickikbt.leadersboard.util.log
 import com.vickikbt.leadersboard.util.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_skill_leaders.*
@@ -27,6 +29,7 @@ class SkillLeadersFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_skill_leaders, container, false)
 
+        skills_progressBar?.show()
         initRecyclerView()
 
         return root
@@ -36,15 +39,14 @@ class SkillLeadersFragment : Fragment() {
         val skillLeadersList = arrayListOf<SkillLeadersModel>()
         val adapter = SkillLeadersRecyclerViewAdapter(requireActivity(), skillLeadersList)
 
-        skills_progressBar?.show()
-
         Coroutines.main {
             viewModel.skillLeaders.await().observe(viewLifecycleOwner, Observer {
                 for (i in it.indices) {
                     skillLeadersList.add(it[i])
                     skill_recyclerview.adapter = adapter
-                    skills_progressBar?.show()
+                    skills_progressBar?.hide()
                 }
+                requireActivity().applicationContext.log(skillLeadersList.size.toString())
             })
         }
     }

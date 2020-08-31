@@ -26,7 +26,8 @@ class HoursLeadersRecyclerViewAdapter(
         return HoursLeadersRecyclerViewViewHolder(view)
     }
 
-    override fun getItemCount() = hoursLeadersList.size
+    //TODO: Fix this later.
+    override fun getItemCount() = 20//hoursLeadersList.size
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: HoursLeadersRecyclerViewViewHolder, position: Int) {

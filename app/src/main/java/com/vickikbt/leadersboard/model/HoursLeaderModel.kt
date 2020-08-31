@@ -12,5 +12,5 @@ data class HoursLeaderModel(
     val name: String,
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int
+    val id: Int=0
 )
