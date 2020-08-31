@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.vickikbt.leadersboard.data.database.AppDatabase
 import com.vickikbt.leadersboard.data.network.ApiService
 import com.vickikbt.leadersboard.data.network.SafeApiRequest
-import com.vickikbt.leadersboard.model.HoursLeaderModel
+import com.vickikbt.leadersboard.model.HoursLeaderModelItem
 import com.vickikbt.leadersboard.util.Coroutines
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class HoursLeadersRepository @Inject constructor(
     private val appDatabase: AppDatabase
 ) : SafeApiRequest() {
 
-    private val hoursLeaders = MutableLiveData<HoursLeaderModel>()
+    private val hoursLeaders = MutableLiveData<List<HoursLeaderModelItem>>()
     //private val skillLeaders = MutableLiveData<SkillLeadersModel>()
 
     init {
@@ -26,13 +26,7 @@ class HoursLeadersRepository @Inject constructor(
 
     //TODO: Fix this issue-IsFetchNeeded.
     private suspend fun isFetchNeeded(): Boolean {
-        return if (appDatabase.hoursLeaderDao().getHoursLeaders().isEmpty()) {
-            Log.e("VickiKbt", "isFetchNeeded: True")
-            true
-        } else {
-            Log.e("VickiKbt", "isFetchNeeded: False")
-            false
-        }
+        return true
     }
 
     suspend fun fetchHoursLeaders() {
@@ -42,7 +36,7 @@ class HoursLeadersRepository @Inject constructor(
         }
     }
 
-    private fun saveHoursLeaders(hoursLeaders: HoursLeaderModel) {
+    private fun saveHoursLeaders(hoursLeaders: List<HoursLeaderModelItem>) {
         Coroutines.io {
             appDatabase.hoursLeaderDao().saveHoursLeaders(hoursLeaders)
         }

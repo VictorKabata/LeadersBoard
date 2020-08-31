@@ -1,7 +1,6 @@
 package com.vickikbt.leadersboard.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.vickikbt.leadersboard.R
 import com.vickikbt.leadersboard.ui.viewmodels.HoursLeadersViewModel
-import com.vickikbt.leadersboard.util.StateListener
-import com.vickikbt.leadersboard.util.hide
-import com.vickikbt.leadersboard.util.show
+import com.vickikbt.leadersboard.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_hours_leaders.*
 
@@ -26,6 +23,7 @@ class HoursLeadersFragment : Fragment(), StateListener {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_hours_leaders, container, false)
+        viewModel.stateListener = this
 
         viewModel.getHoursLeader().observe(viewLifecycleOwner, Observer {
             network_tester_textView.text = it.toString()
@@ -39,11 +37,12 @@ class HoursLeadersFragment : Fragment(), StateListener {
 
     override fun onSuccess(message: String) {
         hours_progressBar.hide()
+        requireActivity().applicationContext.log(message)
     }
 
     override fun onFailure(message: String) {
         hours_progressBar.hide()
-        Log.e("VickiKbt", message)
+        requireActivity().applicationContext.toast(message)
     }
 
 }

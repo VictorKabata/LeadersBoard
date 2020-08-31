@@ -1,6 +1,8 @@
 package com.vickikbt.leadersboard.di
 
+import android.app.Application
 import com.vickikbt.leadersboard.data.network.ApiService
+import com.vickikbt.leadersboard.data.network.NetworkConnectionInterceptor
 import com.vickikbt.leadersboard.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -29,9 +31,18 @@ object NetworkModule {
     }
 
     @Provides
-    fun providesOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun providesNetworkConnectionInterceptor(application: Application): NetworkConnectionInterceptor {
+        return NetworkConnectionInterceptor(application)
+    }
+
+    @Provides
+    fun providesOkHttpClient(
+        loggingInterceptor: HttpLoggingInterceptor,
+        networkConnectionInterceptor: NetworkConnectionInterceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addNetworkInterceptor(networkConnectionInterceptor)
             .callTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)

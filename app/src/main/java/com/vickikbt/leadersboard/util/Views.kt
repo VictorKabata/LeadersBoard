@@ -10,7 +10,7 @@ fun Context.toast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
-fun Context.consoleLog(message: String) {
+fun Context.log(message: String) {
     Log.e("VickiKbt", message)
 }
 
@@ -19,5 +19,5 @@ fun ProgressBar.show(){
 }
 
 fun ProgressBar.hide(){
-    visibility= View.VISIBLE
+    visibility= View.GONE
 }
