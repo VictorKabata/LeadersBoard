@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "skill_leaders_table")
-data class SkillLeadersModelItem(
+data class SkillLeadersModel(
     val badgeUrl: String,
     val country: String,
     val name: String,

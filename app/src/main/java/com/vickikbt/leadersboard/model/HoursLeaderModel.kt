@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 
 @Entity(tableName = "hours_leaders_table")
-data class HoursLeaderModelItem(
+data class HoursLeaderModel(
     val badgeUrl: String,
     val country: String,
     val hours: Int,
