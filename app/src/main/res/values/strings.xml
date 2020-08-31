@@ -5,4 +5,5 @@
     <string name="fragment2">Skill IQ Leaders</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="badge">Badge</string>
 </resources>
