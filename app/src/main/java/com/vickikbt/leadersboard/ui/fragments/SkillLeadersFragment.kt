@@ -36,7 +36,7 @@ class SkillLeadersFragment : Fragment() {
 
     private fun initRecyclerView() {
         skills_progressBar?.show()
-        
+
         val skillLeadersList = arrayListOf<SkillLeadersModel>()
         val adapter = SkillLeadersRecyclerViewAdapter(requireActivity(), skillLeadersList)
 
