@@ -32,13 +32,13 @@ class SkillLeadersFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        val skillList = arrayListOf<SkillLeadersModel>()
-        val adapter = SkillLeadersRecyclerViewAdapter(requireActivity(), skillList)
+        val skillLeadersList = arrayListOf<SkillLeadersModel>()
+        val adapter = SkillLeadersRecyclerViewAdapter(requireActivity(), skillLeadersList)
 
         Coroutines.main {
             viewModel.skillLeaders.await().observe(viewLifecycleOwner, Observer {
                 for (i in it.indices) {
-                    skillList.add(it[i])
+                    skillLeadersList.add(it[i])
                     skill_recyclerview.adapter = adapter
                 }
             })

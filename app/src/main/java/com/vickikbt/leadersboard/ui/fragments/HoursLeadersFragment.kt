@@ -11,12 +11,12 @@ import com.vickikbt.leadersboard.R
 import com.vickikbt.leadersboard.model.HoursLeaderModel
 import com.vickikbt.leadersboard.ui.adapters.HoursLeadersRecyclerViewAdapter
 import com.vickikbt.leadersboard.ui.viewmodels.MainViewModel
-import com.vickikbt.leadersboard.util.*
+import com.vickikbt.leadersboard.util.Coroutines
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_hours_leaders.*
 
 @AndroidEntryPoint
-class HoursLeadersFragment : Fragment(), StateListener {
+class HoursLeadersFragment : Fragment() {
 
     private val viewModel by viewModels<MainViewModel>()
 
@@ -32,35 +32,17 @@ class HoursLeadersFragment : Fragment(), StateListener {
     }
 
     private fun initRecyclerView() {
-        hours_progressBar?.show()
-
         val hoursLeadersList = arrayListOf<HoursLeaderModel>()
         val adapter = HoursLeadersRecyclerViewAdapter(requireActivity(), hoursLeadersList)
 
         Coroutines.main {
             viewModel.hoursLeaders.await().observe(viewLifecycleOwner, Observer {
-                for (i in hoursLeadersList.indices) {
-                    hoursLeadersList.addAll(it)
-                    hours_recyclerView.adapter = adapter
+                for (i in it.indices) {
+                    hoursLeadersList.add(it[i])
+                    hours_recyclerview.adapter = adapter
                 }
-                hours_progressBar?.hide()
-                requireActivity().applicationContext.log(it.size.toString())
             })
         }
-    }
-
-    override fun onLoading() {
-        hours_progressBar.show()
-    }
-
-    override fun onSuccess(message: String) {
-        hours_progressBar.hide()
-        requireActivity().applicationContext.log(message)
-    }
-
-    override fun onFailure(message: String) {
-        hours_progressBar.hide()
-        requireActivity().applicationContext.toast(message)
     }
 
 }
