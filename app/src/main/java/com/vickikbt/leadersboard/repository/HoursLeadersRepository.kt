@@ -1,6 +1,5 @@
 package com.vickikbt.leadersboard.repository
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.vickikbt.leadersboard.data.database.AppDatabase
 import com.vickikbt.leadersboard.data.network.ApiService
@@ -25,7 +24,7 @@ class HoursLeadersRepository @Inject constructor(
 
 
     //TODO: Fix this issue-IsFetchNeeded.
-    private suspend fun isFetchNeeded(): Boolean {
+    private fun isFetchNeeded(): Boolean {
         return true
     }
 
