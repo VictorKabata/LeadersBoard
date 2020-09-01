@@ -1,5 +1,6 @@
 package com.vickikbt.leadersboard.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.vickikbt.leadersboard.R
@@ -18,5 +19,10 @@ class MainActivity : AppCompatActivity() {
 
         view_pager.adapter = adapter
         tab_layout.setupWithViewPager(view_pager)
+
+        toSubmit_button.setOnClickListener {
+            startActivity(Intent(this, SubmitActivity::class.java))
+        }
+
     }
 }
