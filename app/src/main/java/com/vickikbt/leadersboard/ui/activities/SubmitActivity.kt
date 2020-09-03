@@ -21,14 +21,20 @@ class SubmitActivity : AppCompatActivity(), StateListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_submit)
+        viewModel.statListener = this
 
         back.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 
+        submit_button.setOnClickListener {
+            viewModel.onSubmitButtonClicked()
+        }
+
     }
 
+    //TODO: Add custom dialog message for different messages
     override fun onLoading() {
         progressBar_submit?.show()
     }
@@ -36,13 +42,17 @@ class SubmitActivity : AppCompatActivity(), StateListener {
     override fun onSuccess(message: String) {
         progressBar_submit?.hide()
         log(message)
-        //TODO: Add onSuccess Custom Dialog
     }
 
     override fun onFailure(message: String) {
-        progressBar_submit?.show()
+        progressBar_submit?.hide()
         log(message)
         toast(message)
-        //TODO: Add onFailure Custom Dialog
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+        super.onBackPressed()
     }
 }

@@ -1,6 +1,5 @@
 package com.vickikbt.leadersboard.ui.viewmodels
 
-import android.view.View
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.hilt.lifecycle.ViewModelInject
@@ -27,15 +26,23 @@ class SubmissionViewModel @ViewModelInject constructor(private val submissionRep
     @Bindable
     val projectLink = MutableLiveData<String>()
 
-    val statListener: StateListener? = null
+    var statListener: StateListener? = null
 
-    fun onSubmitButtonClicked(view: View) {
+    fun onSubmitButtonClicked() {
         statListener?.onLoading()
-        when {
-            emailAddress.value.isNullOrEmpty() -> {
-                statListener?.onFailure("Enter Email Address")
-                return
-            }
+
+        if (firstName.value.isNullOrEmpty()) {
+            statListener?.onFailure("Enter first name")
+            return
+        } else if (lastName.value.isNullOrEmpty()) {
+            statListener?.onFailure("Enter last name")
+            return
+        } else if (emailAddress.value.isNullOrEmpty()) {
+            statListener?.onFailure("Enter email address")
+            return
+        }
+
+        /*when {
             firstName.value.isNullOrEmpty() -> {
                 statListener?.onFailure("Enter First Name")
                 return
@@ -44,11 +51,15 @@ class SubmissionViewModel @ViewModelInject constructor(private val submissionRep
                 statListener?.onFailure("Enter Last Name")
                 return
             }
+            emailAddress.value.isNullOrEmpty() -> {
+                statListener?.onFailure("Enter Email Address")
+                return
+            }
             projectLink.value.isNullOrEmpty() -> {
                 statListener?.onFailure("Enter Project Link")
                 return
             }
-        }
+        }*/
 
         Coroutines.main {
             try {
@@ -59,7 +70,7 @@ class SubmissionViewModel @ViewModelInject constructor(private val submissionRep
 
                 submissionResponse.let {
                     statListener?.onSuccess("Project Submitted")
-                    return@main
+                    return@let
                 }
                 statListener?.onFailure("Failed to submit")
             } catch (e: ApiException) {

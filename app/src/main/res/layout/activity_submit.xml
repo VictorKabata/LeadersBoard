@@ -98,7 +98,7 @@
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="10dp"
                 android:singleLine="true"
-                android:text="@={viewModel.firstName}"
+                android:text="@{viewModel.firstName}"
                 android:textSize="18sp" />
 
             <EditText

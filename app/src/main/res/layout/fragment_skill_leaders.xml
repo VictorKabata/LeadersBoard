@@ -24,7 +24,7 @@
         android:backgroundTintMode="src_atop"
         android:elevation="11dp"
         android:indeterminate="true"
-        android:indeterminateTint="@android:color/holo_red_dark"
+        android:indeterminateTint="@color/yellow"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
