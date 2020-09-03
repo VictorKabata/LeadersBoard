@@ -43,7 +43,7 @@ class SkillLeadersFragment : Fragment() {
         Coroutines.main {
             viewModel.skillLeaders.await().observe(viewLifecycleOwner, Observer {
                 for (i in it.indices) {
-                    skillLeadersList.add(it[i])
+                    skillLeadersList.add(i, it[i])
                     skill_recyclerview.adapter = adapter
                     skills_progressBar?.hide()
                 }

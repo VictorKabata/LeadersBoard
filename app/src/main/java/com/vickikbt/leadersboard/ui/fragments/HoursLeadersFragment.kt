@@ -42,7 +42,7 @@ class HoursLeadersFragment : Fragment() {
         Coroutines.main {
             viewModel.hoursLeaders.await().observe(viewLifecycleOwner, Observer {
                 for (i in it.indices) {
-                    hoursLeadersList.add(it[i])
+                    hoursLeadersList.add(i, it[i])
                     hours_recyclerview.adapter = adapter
                     hours_progressBar?.hide()
                 }
