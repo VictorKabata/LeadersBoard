@@ -2,6 +2,7 @@ package com.vickikbt.leadersboard.di
 
 import android.app.Application
 import com.vickikbt.leadersboard.data.network.ApiService
+import com.vickikbt.leadersboard.data.network.ApiSubmissionService
 import com.vickikbt.leadersboard.data.network.NetworkConnectionInterceptor
 import com.vickikbt.leadersboard.util.Constants
 import dagger.Module
@@ -70,5 +71,18 @@ object NetworkModule {
     @Provides
     fun providesApiClient(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    fun providesApiSubmissionClient(
+        converterFactory: Converter.Factory,
+        okHttpClient: OkHttpClient
+    ): ApiSubmissionService {
+        return Retrofit.Builder()
+            .baseUrl(Constants.SUBMISSION_BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(converterFactory)
+            .build()
+            .create(ApiSubmissionService::class.java)
     }
 }

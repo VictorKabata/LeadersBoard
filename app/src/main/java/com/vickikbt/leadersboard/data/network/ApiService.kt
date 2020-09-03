@@ -13,4 +13,5 @@ interface ApiService {
 
     @GET(Constants.SKILLIQ_ENDPOINT)
     suspend fun fetchSkillLeaders(): Response<List<SkillLeadersModel>>
+
 }

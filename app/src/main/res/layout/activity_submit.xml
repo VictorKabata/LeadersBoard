@@ -1,165 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".ui.activities.SubmitActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.vickikbt.leadersboard.ui.viewmodels.SubmissionViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".ui.activities.SubmitActivity">
 
-        <RelativeLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_back" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/logo" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/project_submission"
+            android:textColor="@color/yellow"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/line_gradient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <EditText
+                android:id="@+id/firstName_editText"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:padding="16dp"
-                android:src="@drawable/ic_back" />
+                android:layout_marginHorizontal="4dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:hint="@string/first_name"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp"
+                android:singleLine="true"
+                android:text="@={viewModel.firstName}"
+                android:textSize="18sp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_centerInParent="true"
-                android:src="@drawable/logo" />
+            <EditText
+                android:id="@+id/lastName_editText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:hint="@string/last_name"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp"
+                android:singleLine="true"
+                android:text="@={viewModel.lastName}"
+                android:textSize="18sp" />
 
-        </RelativeLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/project_submission"
-        android:textColor="@color/yellow"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="0.8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/line_gradient"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view">
+        </LinearLayout>
 
         <EditText
-            android:id="@+id/firstName_editText"
-            android:layout_width="0dp"
+            android:id="@+id/emailAddress_editText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
             android:layout_weight="1"
             android:background="@color/white"
-            android:hint="@string/first_name"
-            android:inputType="textPersonName"
+            android:hint="@string/email_address"
+            android:inputType="textEmailAddress"
             android:paddingHorizontal="12dp"
             android:paddingVertical="10dp"
             android:singleLine="true"
-            android:textSize="18sp" />
+            android:text="@={viewModel.emailAddress}"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-        <EditText
-            android:id="@+id/lastName_editText"
-            android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/submit_link_editText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
             android:layout_weight="1"
             android:background="@color/white"
-            android:hint="@string/last_name"
-            android:inputType="textPersonName"
+            android:hint="@string/project_link"
+            android:inputType="textEmailAddress"
             android:paddingHorizontal="12dp"
             android:paddingVertical="10dp"
+            android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:textSize="18sp" />
+            android:text="@={viewModel.projectLink}"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailAddress_editText" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:backgroundTint="@color/yellow"
+            android:padding="15dp"
+            android:text="@string/submit"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/submit_link_editText" />
 
-    <EditText
-        android:id="@+id/emailAddress_editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:background="@color/white"
-        android:hint="@string/email_address"
-        android:inputType="textEmailAddress"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="10dp"
-        android:singleLine="true"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        <ProgressBar
+            android:id="@+id/progressBar_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTintMode="src_atop"
+            android:elevation="11dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@android:color/holo_red_dark"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/submit_link_editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:background="@color/white"
-        android:hint="@string/project_link"
-        android:inputType="textEmailAddress"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="10dp"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailAddress_editText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/submit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:backgroundTint="@color/yellow"
-        android:padding="15dp"
-        android:text="@string/submit"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/submit_link_editText" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

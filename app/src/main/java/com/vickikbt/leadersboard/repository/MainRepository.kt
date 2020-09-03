@@ -34,7 +34,7 @@ class MainRepository @Inject constructor(
     //TODO: Fix this issue-IsFetchNeeded.
     //Check if fetch is needed.
     private fun isFetchNeeded(): Boolean {
-        return true
+        return false
     }
 
     //TODO: Catch no internet exception
