@@ -12,7 +12,7 @@ class SubmissionRepository @Inject constructor(private val apiSubmissionService:
         firstName: String,
         lastName: String,
         projectLink: String
-    ): Void {
+    ): Any {
         return safeApiRequest {
             apiSubmissionService.submitProject(
                 emailAddress,

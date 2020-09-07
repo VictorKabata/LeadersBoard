@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.shape.ShapePathModel
 import com.vickikbt.leadersboard.R
 import com.vickikbt.leadersboard.databinding.ActivitySubmitBinding
 import com.vickikbt.leadersboard.ui.viewmodels.SubmissionViewModel
@@ -21,6 +22,8 @@ class SubmitActivity : AppCompatActivity(), StateListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_submit)
+        binding.viewModel=viewModel
+
         viewModel.statListener = this
 
         back.setOnClickListener {

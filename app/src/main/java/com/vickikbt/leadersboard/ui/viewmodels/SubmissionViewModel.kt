@@ -10,6 +10,7 @@ import com.vickikbt.leadersboard.util.ApiException
 import com.vickikbt.leadersboard.util.Coroutines
 import com.vickikbt.leadersboard.util.NoInternetException
 import com.vickikbt.leadersboard.util.StateListener
+import java.net.UnknownHostException
 
 class SubmissionViewModel @ViewModelInject constructor(private val submissionRepository: SubmissionRepository) :
     ViewModel(), Observable {
@@ -31,52 +32,41 @@ class SubmissionViewModel @ViewModelInject constructor(private val submissionRep
     fun onSubmitButtonClicked() {
         statListener?.onLoading()
 
-        if (firstName.value.isNullOrEmpty()) {
-            statListener?.onFailure("Enter first name")
-            return
-        } else if (lastName.value.isNullOrEmpty()) {
-            statListener?.onFailure("Enter last name")
-            return
-        } else if (emailAddress.value.isNullOrEmpty()) {
-            statListener?.onFailure("Enter email address")
-            return
-        }
-
-        /*when {
+        when {
             firstName.value.isNullOrEmpty() -> {
-                statListener?.onFailure("Enter First Name")
+                statListener?.onFailure("Enter first name")
                 return
             }
             lastName.value.isNullOrEmpty() -> {
-                statListener?.onFailure("Enter Last Name")
+                statListener?.onFailure("Enter last name")
                 return
             }
             emailAddress.value.isNullOrEmpty() -> {
-                statListener?.onFailure("Enter Email Address")
+                statListener?.onFailure("Enter email address")
                 return
             }
             projectLink.value.isNullOrEmpty() -> {
-                statListener?.onFailure("Enter Project Link")
+                statListener?.onFailure("Enter project link")
                 return
             }
-        }*/
 
-        Coroutines.main {
-            try {
-                val submissionResponse = submissionRepository.submitProject(
-                    emailAddress.value!!,
-                    firstName.value!!, lastName.value!!, projectLink.value!!
-                )
+            else -> Coroutines.main {
+                try {
+                    val submissionResponse = submissionRepository.submitProject(
+                        emailAddress.value!!,
+                        firstName.value!!, lastName.value!!, projectLink.value!!
+                    )
 
-                submissionResponse.let {
-                    statListener?.onSuccess("Project Submitted")
-                    return@let
+                    submissionResponse.let {
+                        statListener?.onSuccess("Project Submitted")
+                        return@let
+                    }
+                    statListener?.onFailure("Failed to submit")
+                } catch (e: ApiException) {
+                    statListener?.onFailure(e.message.toString())
+                } catch (e: UnknownHostException) {
+                    statListener?.onFailure("Ensure you are connected to the internet")
                 }
-                statListener?.onFailure("Failed to submit")
-            } catch (e: ApiException) {
-                statListener?.onFailure(e.message.toString())
-            } catch (e: NoInternetException) {
-                statListener?.onFailure(e.message.toString())
             }
         }
 

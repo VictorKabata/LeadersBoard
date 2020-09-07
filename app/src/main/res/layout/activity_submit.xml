@@ -98,7 +98,7 @@
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="10dp"
                 android:singleLine="true"
-                android:text="@{viewModel.firstName}"
+                android:text="@={viewModel.firstName}"
                 android:textSize="18sp" />
 
             <EditText
@@ -166,8 +166,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:backgroundTint="@color/yellow"
             android:padding="15dp"
+            android:background="@drawable/submit_button"
             android:text="@string/submit"
             android:textColor="@color/white"
             android:textSize="15sp"
