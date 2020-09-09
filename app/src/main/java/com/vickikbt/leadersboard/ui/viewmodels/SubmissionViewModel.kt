@@ -59,13 +59,14 @@ class SubmissionViewModel @ViewModelInject constructor(private val submissionRep
 
                     submissionResponse.let {
                         statListener?.onSuccess("Project Submitted")
-                        return@let
+                        return@main
                     }
-                    statListener?.onFailure("Failed to submit")
                 } catch (e: ApiException) {
                     statListener?.onFailure(e.message.toString())
+                    return@main
                 } catch (e: UnknownHostException) {
                     statListener?.onFailure("Ensure you are connected to the internet")
+                    return@main
                 }
             }
         }

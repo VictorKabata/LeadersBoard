@@ -23,7 +23,6 @@ class SkillLeadersRecyclerViewAdapter(
         return SkillRecyclerViewViewHolder(view)
     }
 
-    //TODO: Fix this later.
     override fun getItemCount() = 20//skillLeadersList.size
 
     @SuppressLint("SetTextI18n")

@@ -26,7 +26,7 @@ class HoursLeadersRecyclerViewAdapter(
         return HoursLeadersRecyclerViewViewHolder(view)
     }
 
-    //TODO: Fix this later.
+
     override fun getItemCount() = 20//hoursLeadersList.size
 
     @SuppressLint("SetTextI18n")

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.vickikbt.leadersboard.ui.viewmodels.SubmissionViewModel" />
@@ -163,7 +162,7 @@
 
         <Button
             android:id="@+id/submit_button"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
             android:padding="15dp"

@@ -30,14 +30,11 @@ class MainRepository @Inject constructor(
         }
     }
 
-
-    //TODO: Fix this issue-IsFetchNeeded.
     //Check if fetch is needed.
     private fun isFetchNeeded(): Boolean {
-        return false
+        return true
     }
 
-    //TODO: Catch no internet exception
     //Fetch data from the API if fetch is needed is true
     private suspend fun fetchHoursLeaders() {
         if (isFetchNeeded()) {
