@@ -16,10 +16,10 @@ and supports coroutines out of the box.
 - [GSON](https://github.com/square/gson) - JSON Parser,used to parse 
 requests on the data layer for Entities and understands Kotlin non-nullable 
 and default parameters.
-- [OkHttp-Logging-Interceptor](https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor/README.md) - Hogs HTTP request and response data.
+- [OkHttp-Logging-Interceptor](https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor/README.md) - Logs HTTP request and response data.
 - [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines) - Library Support for coroutines.
 - [Material Design](https://material.io/develop/android/docs/getting-started/) - Build awesome beautiful UIs.
 
 ## Screenshots.
-<img src="screenshots/splash_screen.png" width="280"/>   <img src="screenshots/fragment1.png" width="280"/>  <img src="screenshots/fragment2.png" width="280"/>   <img src="screenshots/submission_blank.png" width="280"/>  <img src="screenshots/submission_filled.png" width="280"/>   <img src="screenshots/submission_confirmation.png" width="280"/>  <img src="screenshots/submission_successful.png" width="280"/>   <img src="screenshots/submission_failed.png" width="280"/>
+<img src="screenshots/splash_screen.png" width="250"/>   <img src="screenshots/fragment1.png" width="250"/>  <img src="screenshots/fragment2.png" width="250"/>   <img src="screenshots/submission_blank.png" width="250"/>  <img src="screenshots/submission_filled.png" width="250"/>   <img src="screenshots/submission_confirmation.png" width="250"/>  <img src="screenshots/submission_successful.png" width="250"/>   <img src="screenshots/submission_failed.png" width="250"/>
 
