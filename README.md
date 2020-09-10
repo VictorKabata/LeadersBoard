@@ -9,7 +9,6 @@ Libraries used for the whole project are:
 - [Jetpack](https://developer.android.com/jetpack)
   - [Viewmodel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manage UI related data in a lifecycle conscious way .
   - [Data Binding](https://developer.android.com/topic/libraries/data-binding) - Support library that allows binding of UI components in  layouts to data sources.
-
 - [Room]() - Provides an abstraction layer over SQLite used for offline data caching.
 - [Retrofit](https://square.github.io/retrofit/) - Type-safe http client 
 and supports coroutines out of the box.  
