@@ -15,6 +15,6 @@ interface ApiSubmissionService {
         @Field("entry.1877115667") firstName: String,
         @Field("entry.2006916086") lastName: String,
         @Field("entry.284483984") projectLink: String
-    ):Response<Any>
+    ):Response<Void>
 
 }

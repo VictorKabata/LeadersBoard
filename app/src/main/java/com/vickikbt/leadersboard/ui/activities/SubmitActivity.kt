@@ -40,7 +40,6 @@ class SubmitActivity : AppCompatActivity(), StateListener {
 
         submit_button.setOnClickListener {
             showDialog()
-            log("You clicked me")
         }
 
     }
@@ -55,6 +54,7 @@ class SubmitActivity : AppCompatActivity(), StateListener {
         val confirmationButton = dialog.findViewById<Button>(R.id.button_confirmation)
         confirmationButton.setOnClickListener {
             viewModel.onSubmitButtonClicked()
+            //showStatusDialog(R.drawable.ic_success, "Submission Successful")
         }
 
         val closeDialog: ImageView = dialog.findViewById(R.id.imageView_status)
